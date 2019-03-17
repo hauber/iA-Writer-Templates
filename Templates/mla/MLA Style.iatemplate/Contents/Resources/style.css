@@ -9,7 +9,7 @@
 
 /* From min-width: 80px */
 html {
-  font-family: "Times New Roman", "Keyboard", sans-serif;
+  font-family: "Avenir Next", "Times New Roman", "Keyboard", sans-serif;
   font-weight: 300; /* SemiLight weight for non-Retina (@1x) */
   font-size: 1px; /* Overridden by responsive font sizing */
   line-height: 220%; /* 2.5 = 30px @ font-size: 18px */
@@ -23,9 +23,10 @@ html {
 }
 
 /* …but only until 414px breakpoint on OS X */
+/* RHa: really? rather stay with 400 */
 @media (-webkit-min-device-pixel-ratio: 2) and (min-width: 414px) and (min-device-width: 1152px) , (min-resolution: 192dpi) and (min-width: 414px) and (min-device-width: 1152px) {
   html {
-    font-weight: 300;
+    font-weight: 400;
   }
 }
 
