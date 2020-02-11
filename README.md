@@ -60,6 +60,7 @@ Template pages and other properties are defined in `Info.plist`. We recommend st
 | `IATemplateAuthorURL` | String | Recommended | A link to template’s author. |
 | `IATemplateSuportsSmartTables` | Boolean | Optional | Whether to process Smart Tables. Defaults to YES if absent. |
 | `IATemplateSupportsMath` | Boolean | Optional | Whether to process TeX math expressions into MathML. Defaults to YES if absent. |
+| `IATemplateTitleUsesHeaderAndFooterHeight` | Boolean | Optional | When set to NO changes header and footer height on title page to 0. Defaults to YES if absent. |
 
 1. iA Writer uses the bundle identifier to associate templates with documents. Each template must have a unique identifier. The identifier must contain only alphanumeric (A-Z, a-z, 0-9), hyphen (-), and period (.) characters. The string should be in reverse-DNS format. For example, if your company’s domain is `example.com` you could assign the string `com.example.template` as the bundle identifier.
 2. HTML file name, without path extension. The actual files themselves must have an `html` extension.
@@ -78,7 +79,7 @@ iA Writer dispatches an `ia-writer-change` event to elements when it updates the
 
 #### Document
 
-The document page lays out the text from the editor in Preview, printed documents, and PDFs. The document page supports one attribute.
+The document page lays out the text from the editor in Preview, printed documents, and PDFs.
 
 | Attribute | Description |
 |:--|:--|
@@ -90,13 +91,10 @@ iA Writer uses [MultiMarkdown][MMD] (with a few additions) to convert Markdown t
 
 #### Title Page, Header and Footer
 
-Title page, header, and footer are used only in in printed documents and PDFs. They support several attributes.
+Title page, header, and footer are used only in in printed documents and PDFs.
 
 | Attribute | Description |
 |:--|:--|
-| `data-title` | Document title, taken from document file name. |
-| `data-author` | Document author, if specified in Preferences. |
-| `data-date` | Current date. You can specify date format<sup>1</sup> in the attribute value: `data-date="MMMM yyyy"`. Date format patterns are described in [Unicode Technical Standard #35][Date Formats]. |
 | `data-page-count` | Total page count of the exported document. |
 | `data-page-number` | Current page number.<sup>2</sup> |
 
@@ -106,7 +104,13 @@ Title page, header, and footer are used only in in printed documents and PDFs. T
 [Date Formats]: http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns
 [Locale Adjustments]: https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSDateFormatter_Class/#//apple_ref/occ/clm/NSDateFormatter/dateFormatFromTemplate:options:locale:
 
+#### All Pages
 
+| Attribute | Description |
+|:--|:--|
+| `data-title` | Document title, taken from document file name. |
+| `data-author` | Document author, if specified in Preferences. |
+| `data-date` | Current date. You can specify date format<sup>1</sup> in the attribute value: `data-date="MMMM yyyy"`. Date format patterns are described in [Unicode Technical Standard #35][Date Formats]. |
 
 ### Preview
 
@@ -132,6 +136,8 @@ To enable Web Inspector in Preview, paste the following command into Terminal.
 ```
 defaults write pro.writer.mac WebKitDeveloperExtras -bool true
 ```
+
+On Windows, you can enable the Chromium inspector by using <kbd>Ctrl</kbd> <kbd>J</kbd>.
 
 #### Vertical Margins
 
